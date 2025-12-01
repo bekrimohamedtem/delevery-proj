@@ -4,9 +4,11 @@ import Button from "../ui/Button";
 import SelectField from "../forms/SelectField";
 
 function AssignModal({ isOpen, onClose, title, options = [], onSubmit, submitLabel = "Assigner" }) {
-  if (!isOpen) return null;
-
+  // ✅ Tous les hooks sont déclarés en premier
   const [selected, setSelected] = React.useState("");
+
+  // ✅ Early return après les hooks
+  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,10 @@ function AssignModal({ isOpen, onClose, title, options = [], onSubmit, submitLab
       <div className="bg-white rounded-lg p-6 w-[90%] max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">{title}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-colors">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 transition-colors"
+          >
             <CloseIcon />
           </button>
         </div>
